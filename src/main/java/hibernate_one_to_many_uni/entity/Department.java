@@ -1,4 +1,4 @@
-package hibernate_one_to_many_bi.entity;
+package hibernate_one_to_many_uni.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -24,8 +24,8 @@ public class Department {
     public Department() {
     }
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.REFRESH, CascadeType.DETACH})
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "department_id")
     private List<Employee> employees;
 
     public Department(String departmentName, int maxSalary, int minSalary) {
