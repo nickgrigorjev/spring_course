@@ -1,6 +1,4 @@
-package hibernate_test_2.entity;
-
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
+package hibernate_one_to_one.entity;
 
 import javax.persistence.*;
 
