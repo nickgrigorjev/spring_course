@@ -1,6 +1,7 @@
 package hibernate_test_2;
 
-import hibernate_test.entity.Employee;
+import hibernate_test_2.entity.Detail;
+import hibernate_test_2.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -10,17 +11,50 @@ public class Test1 {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Employee.class)
+                .addAnnotatedClass(Detail.class)
                 .buildSessionFactory();
+        Session session = null;
 
         try {
-            Session session = factory.getCurrentSession();
-            Employee emp = new Employee("Alexander", "Ivanov", "IT", 600);
+//            Session session = factory.getCurrentSession();
+//            Employee employee = new Employee("Nick", "Grigorjev", "IT", 500);
+//            Detail detail = new Detail("Samara", "123456789", "nsgrigorjev@gmail.com");
+//            employee.setEmpDetail(detail);
+//            session.beginTransaction();
+//            session.save(employee);
+//
+//            session.getTransaction().commit();
+//            System.out.println("Успешно!");
+
+//            Session session = factory.getCurrentSession();
+//            Employee employee = new Employee("Oleg", "Smirnov", "SALES", 700);
+//            Detail detail = new Detail("Moscow", "987654321", "olejka@gmail.com");
+//            employee.setEmpDetail(detail);
+//            session.beginTransaction();
+//            session.save(employee);
+//            session.getTransaction().commit();
+//            System.out.println("Успешно!");
+
+//            session = factory.getCurrentSession();
+//
+//            session.beginTransaction();
+//            Employee employee = session.get(Employee.class,10);
+//            System.out.println(employee.getEmpDetail());
+//
+//            session.getTransaction().commit();
+//            System.out.println("Успешно!");
+
+            session = factory.getCurrentSession();
+
             session.beginTransaction();
-            session.save(emp);
+            Employee employee = session.get(Employee.class,2);
+            session.delete(employee);
+
             session.getTransaction().commit();
             System.out.println("Успешно!");
-            System.out.println(emp);
+
         } finally {
+            session.close();
             factory.close();
         }
     }
